@@ -77,3 +77,18 @@ def add_a_thing():
         # Go back to the home page
         flash(f"Thing '{name}' added", "success")
         return redirect("/")
+    
+#-----------------------------------------------------------
+# Route for deleting a task, Id given in the route
+#-----------------------------------------------------------
+@app.get("/delete/<int:id>")
+def delete_task(id):
+    with connect_db() as client:
+        # Delete the task from the DB
+        sql = "DELETE FROM tasks WHERE id=?"
+        values = [id]
+        client.execute(sql, values)
+
+        # Go back to the home page
+        flash("Task deleted", "success")
+        return redirect("/")
