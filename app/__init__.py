@@ -55,7 +55,6 @@ def show_one_thing(id):
             # No, so show error
             return not_found_error()
 
-
 #-----------------------------------------------------------
 # Route for adding a thing, using data posted from a form
 #-----------------------------------------------------------
@@ -65,7 +64,7 @@ def add_a_thing():
     name  = request.form.get("name")
     priority = request.form.get("priority")
 
-    # Sanitise the inputs
+    # Sanitizze the inputs
     name = html.escape(name)
     priority = html.escape(priority)
     with connect_db() as client:
