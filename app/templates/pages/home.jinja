@@ -22,12 +22,20 @@
     <article>
 
         <ul>
-            {% for thing in things %}
+            {% for task in tasks %}
 
-                <li>
-                    <a href="/thing/{{ thing.id }}">
-                        {{ thing.name }}
-                    </a>
+                <li class="task">  
+                        
+                        
+                    {{ task.priority}}
+
+                    {{ task.name }}
+                        
+                    {% if task.complete %} 
+                    <a href="/incomplete/{{ task.id }}">🗹</a> 
+                    {% else %} 
+                    <a href="/complete/{{ task.id }}">☐</a> 
+                    {% endif %}
                 </li>
 
             {% else %}
@@ -57,6 +65,7 @@
                 type="number"
                 name="priority"
                 min="0"
+                max="10"
                 placeholder="priority of task"
                 required
             >
